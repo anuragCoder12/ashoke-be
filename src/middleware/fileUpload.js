@@ -1,21 +1,28 @@
-const cloudinary = require("cloudinary").v2;
-const { CloudinaryStorage } = require("multer-storage-cloudinary"); 
+// middleware/uploads/baseUpload.js
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../../config/cloudinaryConfig");
 const multer = require("multer");
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: {
-      folder: "career_form",
-      // resource_type: "raw",
-    allowed_formats: ["pdf", "doc", "docx", "jpg"],
+  params: async (req, file) => {
+    if (file.mimetype.startsWith('image')) {
+      return { folder: "images", allowed_formats: ['jpg', 'png', 'jpeg'], resource_type: "image" };
+    } else if (file.mimetype.startsWith('video')) {
+      return { folder: "videos", allowed_formats: ['mp4', 'mov', 'avi', 'wmv'], resource_type: "video" };
+    }
   },
 });
 
-const fileUpload = multer({ storage });
+const baseUpload = multer({
+  storage,
+  limits: { fileSize: 50 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    if (!file.mimetype.startsWith('image') && !file.mimetype.startsWith('video')) {
+      return cb(new Error('Only images and videos are allowed'), false);
+    }
+    cb(null, true);
+  },
+});
 
-module.exports = fileUpload;
+module.exports = baseUpload;

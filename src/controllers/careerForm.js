@@ -13,7 +13,7 @@ try {
         email,
         phone,
         message,
-        file: fileurl
+        
     })
 
     const newForm = await savedForm.save()
