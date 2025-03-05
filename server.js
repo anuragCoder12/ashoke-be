@@ -37,6 +37,7 @@ const testimonialPage = require("./src/routes/testimonialPage");
 const aboutPage = require("./src/routes/about");
 const homePage = require("./src/routes/home");
 const category = require("./src/routes/category");
+const form = require("./src/routes/form");
 
 app.use("/api/enquiry", postEnquiry);
 app.use("/api/enquiry", getEnquiries);
@@ -57,4 +58,5 @@ app.use("/api/page/testimonialPage", testimonialPage);
 app.use("/api/page/abouPage", aboutPage);
 app.use("/api/page/homePage", homePage);
 app.use("/api/category", category);
+app.use("/api/form", form);
 

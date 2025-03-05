@@ -3,7 +3,7 @@ const mongoose  = require("mongoose");
 const testimonialSchema = new mongoose.Schema({
     title:{
         type: String,
-        required: true
+        // required: true
     },
     description: {
         type: String,
@@ -13,7 +13,7 @@ const testimonialSchema = new mongoose.Schema({
     },
     name:{
         type: String,
-        required: true
+        // required: true
     },
     designation:{
         type: String,

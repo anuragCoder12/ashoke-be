@@ -6,10 +6,10 @@ const createRegion = async (req, res) => {
         const { region_name, manager_name, phone } = req.body;
         
         // Check if region already exists
-        const existingRegion = await Region.findOne({ region_name });
-        if (existingRegion) {
-            return res.status(400).json({ message: 'Region already exists' });
-        }
+        // const existingRegion = await Region.findOne({ region_name });
+        // if (existingRegion) {
+        //     return res.status(400).json({ message: 'Region already exists' });
+        // }
 
         // Create new region
         const newRegion = new Region({

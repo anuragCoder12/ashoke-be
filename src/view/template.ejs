@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Form Submission</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        h2 { color: #333; }
+        p { font-size: 16px; }
+        .field { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>New Form Submission</h2>
+        <p><span class="field">First Name:</span> <%= firstName %></p>
+        <p><span class="field">Phone Number:</span> <%= lastName %></p>
+        <p><span class="field">Email:</span> <%= email %></p>
+        
+        <% if (product) { %>
+            <p><span class="field">Product:</span> <%= product %></p>
+        <% } %>
+
+        <% if (message) { %>
+            <p><span class="field">Message:</span> <%= message %></p>
+        <% } %>
+    </div>
+</body>
+</html>
